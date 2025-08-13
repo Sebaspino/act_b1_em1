@@ -47,31 +47,35 @@ public class Libro {
         if (precio >= 0) {
             this.precio = precio;
         } else {
-            System.out.println("Valor invalido");
+            System.out.println("Valor invalido, ingrese valores superiores a 0.");
         }
 
     }
 
     // TODO: Crear método aplicarDescuento que reciba porcentaje
     // Nota: Calcular descuento y actualizar precio
-    public void aplicarDescuento(double porcentaje){
-        if (porcentaje > 0 && porcentaje <= 100) {
-            double descuento = (porcentaje / 100) * precio;
-            this.precio = precio - descuento;
-            System.out.println("Se aplicó un descuento del " + porcentaje + "%. Nuevo precio: " + this.precio);
+    public void aplicarDescuento(double porcentaje) {
+        if (porcentaje >= 0 && porcentaje <= 100) {
+            double descuento = (porcentaje / 100) * this.precio;
+            this.precio = this.precio - descuento;
         } else {
             System.out.println("Porcentaje inválido.");
-        }        
+        }
     }
 
     // TODO: Crear método aplicarDescuento que reciba porcentaje y monto máximo
     // Nota: Aplicar descuento solo si no excede el monto máximo
-    public void aplicarDescuento(double porcentajeDescuento, double montoMaximo) {
-        double montoDescuento = this.precio * (porcentajeDescuento / 100);
-        if (montoDescuento <= montoMaximo) {
-            this.precio -= montoDescuento;
-        }else{
-            System.out.println("Valor excedido");
+    public void aplicarDescuento(double porcentaje, double montoMaximo) {
+        if (porcentaje >= 0 && porcentaje <= 100) {
+            double descuento = (porcentaje / 100) * this.precio;
+            if (descuento <= montoMaximo) {
+                precio = precio - descuento;
+                System.out.printf("Un descuento de $%.2f. El nuevo precio es: $%.2f%n", descuento, this.precio);
+            } else {
+                System.out.println("El descuento calculado supera el monto máximo permitido");
+            }
+        } else {
+            System.out.println("Valor de porcentaje no permitido");
         }
     }
 
